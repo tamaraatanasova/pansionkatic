@@ -37,7 +37,7 @@
             <div class="card">
                 <!-- <img src="{{ asset('images/' . strtolower($type->name) . '.jpg') }}" alt="{{ $type->name }}"> -->
                 <div class="card-body">
-                    <h5 class="card-title">{{ $type->name }}</h5>
+                      {{ localized_field($type, 'name') }}
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </div>
