@@ -86,9 +86,9 @@ public function update(Request $request, Item $item)
         return view('items.create', compact('subtypes'));
     }
 
+    // Store the newly created item in the database
 public function store(Request $request)
 {
-    // Create a new item
     $item = new Item();
     $item->name = $request->name;
     $item->name_en = $request->name_en;
@@ -99,21 +99,19 @@ public function store(Request $request)
     $item->description_en = $request->description_en;
     $item->description_de = $request->description_de;
 
-    // Save the item first to generate an ID
-    $item->save();
-
     // Check if an image was uploaded
     if ($request->hasFile('image')) {
-        // Generate a unique filename based on the item id
+        // Generate a unique filename based on the item id (or any custom naming convention)
         $imagePath = 'images/items/' . $item->id . '.jpg';
 
-        // Move the image to the public folder
+        // Store the image in the public folder
         $request->file('image')->move(public_path('images/items'), $item->id . '.jpg');
     }
 
+    $item->save();
+
     return redirect()->route('items.create');
 }
-
 
 
 
