@@ -23,9 +23,10 @@
         <div></div>
     </div>
 <div class="nav-links">
-    <a href="{{ route('lang.switch', 'en') }}">EN</a>
-    <a href="{{ route('lang.switch', 'de') }}">DE</a>
-    <a href="{{ route('lang.switch', 'hr') }}">HR</a>
+<a href="{{ url('/lang/hr') }}">HR</a>
+<a href="{{ url('/lang/en') }}">EN</a>
+<a href="{{ url('/lang/de') }}">DE</a>
+
 </div>
 
 </div>
@@ -41,12 +42,7 @@
             <div class="card">
                 <img src="{{ asset('images/' . strtolower($type->name) . '.jpg') }}" alt="{{ $type->name }}">
                 <div class="card-body">
-@php
-    $locale = app()->getLocale();
-    $name = $locale === 'hr' ? $type->name : ($type->{'name_' . $locale} ?? $type->name);
-@endphp
-
-<h5 class="card-title">{{ $name }}</h5>
+                   {{ localized_field($type, 'name') }}
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </div>

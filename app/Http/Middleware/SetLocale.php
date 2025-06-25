@@ -9,12 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SetLocale
 {
-    public function handle(Request $request, Closure $next): Response
-    {
-        if (session()->has('locale')) {
-            App::setLocale(session('locale'));
-        }
-
-        return $next($request);
-    }
+    public function handle($request, Closure $next)
+{
+    app()->setLocale(session('locale', 'hr')); // default to hr
+    return $next($request);
+}
 }

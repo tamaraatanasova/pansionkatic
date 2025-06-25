@@ -37,19 +37,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/items/category/{id}', [ItemController::class, 'showByCategory'])->name('items.category');
     Route::get('/items/{id}', [ItemController::class, 'show'])->name('items.show');
     
-Route::get('/admin/edit', [AdminController::class, 'edit'])->name('admin.edit');
-Route::put('/admin/update', [AdminController::class, 'update'])->name('admin.update');
+// Route::get('/admin/edit', [AdminController::class, 'edit'])->name('admin.edit');
+// Route::put('/admin/update', [AdminController::class, 'update'])->name('admin.update');
 
 });
 
-Route::get('lang/{locale}', function ($locale) {
-    if (!in_array($locale, ['hr', 'en', 'de'])) {
-        abort(400);
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['hr', 'en', 'de'])) {
+        session(['locale' => $locale]);
     }
-
-    session(['locale' => $locale]);
-    app()->setLocale($locale);
-
     return redirect()->back();
 })->name('lang.switch');
 
