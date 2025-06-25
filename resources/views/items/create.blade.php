@@ -67,25 +67,25 @@
 
         <!-- Name EN -->
         <div>
-            <label for="name_en" class="block text-sm font-medium text-gray-700">Name (EN)</label>
+            <label for="name_en" class="block text-sm font-medium text-gray-700">Naziv (EN)</label>
             <input type="text" id="name_en" name="name_en" class="mt-1 block w-full border border-gray-300 rounded-lg p-2">
         </div>
 
         <!-- Name DE -->
         <div>
-            <label for="name_de" class="block text-sm font-medium text-gray-700">Name (DE)</label>
+            <label for="name_de" class="block text-sm font-medium text-gray-700">Naziv (DE)</label>
             <input type="text" id="name_de" name="name_de" class="mt-1 block w-full border border-gray-300 rounded-lg p-2">
         </div>
 
         <!-- Price -->
         <div>
-            <label for="price" class="block text-sm font-medium text-gray-700">Price (€)</label>
+            <label for="price" class="block text-sm font-medium text-gray-700">Cjena (€)</label>
             <input type="number" step="0.01" id="price" name="price" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
         </div>
 
         <!-- Category -->
         <div>
-            <label for="subtype_id" class="block text-sm font-medium text-gray-700">Category</label>
+            <label for="subtype_id" class="block text-sm font-medium text-gray-700">Kategorija</label>
             <select id="subtype_id" name="subtype_id" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
                 <option value="">Select a category</option>
                 @foreach ($subtypes as $subtype)
@@ -102,13 +102,13 @@
 
         <!-- Description EN -->
         <div>
-            <label for="description_en" class="block text-sm font-medium text-gray-700">Description (EN)</label>
+            <label for="description_en" class="block text-sm font-medium text-gray-700">Opis (EN)</label>
             <textarea id="description_en" name="description_en" rows="3" class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
         </div>
 
         <!-- Description DE -->
         <div>
-            <label for="description_de" class="block text-sm font-medium text-gray-700">Beschreibung (DE)</label>
+            <label for="description_de" class="block text-sm font-medium text-gray-700">Opis (DE)</label>
             <textarea id="description_de" name="description_de" rows="3" class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
         </div>
 

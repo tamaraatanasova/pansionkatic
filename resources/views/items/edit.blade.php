@@ -63,31 +63,31 @@
 
     <!-- Original Name Field -->
     <div class="mb-4">
-        <label for="name" class="block">Name</label>
+        <label for="name" class="block">Ime</label>
         <input type="text" name="name" id="name" value="{{ $item->name }}" class="w-full border-gray-300 p-2 rounded">
     </div>
 
     <!-- New Name (English) Field -->
     <div class="mb-4">
-        <label for="name_en" class="block">Name (English)</label>
+        <label for="name_en" class="block">Ime (English)</label>
         <input type="text" name="name_en" id="name_en" value="{{ $item->name_en }}" class="w-full border-gray-300 p-2 rounded">
     </div>
 
     <!-- New Name (Greek) Field -->
     <div class="mb-4">
-        <label for="name_gr" class="block">Name (German)</label>
+        <label for="name_gr" class="block">Ime (German)</label>
         <input type="text" name="name_de" id="name_de" value="{{ $item->name_de }}" class="w-full border-gray-300 p-2 rounded">
     </div>
 
     <!-- Price Field -->
     <div class="mb-4">
-        <label for="price" class="block">Price</label>
+        <label for="price" class="block">Cjena</label>
         <input type="number" step="0.01" name="price" id="price" value="{{ $item->price }}" class="w-full border-gray-300 p-2 rounded">
     </div>
 
     <!-- Category Selection -->
     <div class="mb-4">
-        <label for="subtype_id" class="block">Category</label>
+        <label for="subtype_id" class="block">Kategorija</label>
         <select name="subtype_id" id="subtype_id" class="w-full border-gray-300 p-2 rounded">
             @foreach ($subtypes as $subtype)
                 <option value="{{ $subtype->id }}" {{ $item->subtype_id == $subtype->id ? 'selected' : '' }}>
@@ -99,23 +99,23 @@
 
     <!-- Original Description Field -->
     <div class="mb-4">
-        <label for="description" class="block">Description</label>
+        <label for="description" class="block">Opis</label>
         <textarea name="description" id="description" rows="4" class="w-full border-gray-300 p-2 rounded">{{ $item->description }}</textarea>
     </div>
 
     <!-- New Description (English) Field -->
     <div class="mb-4">
-        <label for="description_en" class="block">Description (English)</label>
+        <label for="description_en" class="block">Opis (English)</label>
         <textarea name="description_en" id="description_en" rows="4" class="w-full border-gray-300 p-2 rounded">{{ $item->description_en }}</textarea>
     </div>
 
     <!-- New Description (German) Field -->
     <div class="mb-4">
-        <label for="description_de" class="block">Description (German)</label>
+        <label for="description_de" class="block">Opis (German)</label>
         <textarea name="description_de" id="description_de" rows="4" class="w-full border-gray-300 p-2 rounded">{{ $item->description_de }}</textarea>
     </div>
 
-    <button type="submit" class="bg-blue-600 text-white p-2 rounded">Update Item</button>
+    <button type="submit" class="bg-blue-600 text-white p-2 rounded">Update</button>
 </form>
 
     </div>
