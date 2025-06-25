@@ -36,12 +36,15 @@
 @foreach($items as $item)
     <a href="{{ route('items.info', $item->id) }}">
         <div class="card">
-    @php
-        $itemImagePath = storage_path('app/public/images/items/' . $item->id . '.jpg');
-        $imageSrc = file_exists($itemImagePath)
-            ? asset('storage/images/items/' . $item->id . '.jpg')
-            : asset('storage/images/placeholder.png');
-    @endphp
+@php
+    $itemImagePath = storage_path('app/public/images/items/' . $item->id . '.jpg');
+    $imageSrc = file_exists($itemImagePath)
+        ? asset('storage/images/items/' . $item->id . '.jpg')
+        : asset('storage/images/items/placeholder.png');
+@endphp
+
+<img src="{{ $imageSrc }}" alt="{{ $item->name }}">
+
 
     <img src="{{ $imageSrc }}" alt="{{ $item->name }}">
 
