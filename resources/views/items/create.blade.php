@@ -56,7 +56,8 @@
 <div class="max-w-7xl mx-auto py-10">
     <div class="bg-white p-6 rounded shadow">
 
-<form action="{{ route('items.store') }}" method="POST">
+<form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data">
+
     @csrf
     <div class="space-y-4">
         <!-- Name HR -->

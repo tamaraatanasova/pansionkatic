@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subtype;
 use App\Models\Item;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -86,32 +87,31 @@ public function update(Request $request, Item $item)
         return view('items.create', compact('subtypes'));
     }
 
-    // Store the newly created item in the database
 public function store(Request $request)
 {
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric|min:0',
+        'subtype_id' => 'required|exists:subtypes,id',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
+
     $item = new Item();
     $item->name = $request->name;
-    $item->name_en = $request->name_en;
-    $item->name_de = $request->name_de;
     $item->price = $request->price;
     $item->subtype_id = $request->subtype_id;
-    $item->description = $request->description;
-    $item->description_en = $request->description_en;
-    $item->description_de = $request->description_de;
-
-    // Check if an image was uploaded
-    if ($request->hasFile('image')) {
-        // Generate a unique filename based on the item id (or any custom naming convention)
-        $imagePath = 'images/items/' . $item->id . '.jpg';
-
-        // Store the image in the public folder
-        $request->file('image')->move(public_path('images/items'), $item->id . '.jpg');
-    }
-
     $item->save();
 
-    return redirect()->route('items.create');
+    // dd('Saved'); // DEBUG
+
+    if ($request->hasFile('image')) {
+        $request->file('image')->storeAs('public/images/items', $item->id . '.jpg');
+    }
+
+    return redirect()->route('items.create')->with('success', 'Item created!');
 }
+
 
 
 

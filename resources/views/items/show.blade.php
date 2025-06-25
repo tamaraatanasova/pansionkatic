@@ -33,25 +33,25 @@
 <div class="container">
 
 
-    @foreach($items as $item)
-        <a href="{{ route('items.info', $item->id) }}">
-            <div class="card">
-        @php
-            $itemImagePath = public_path('images/items/' . $item->id . '.jpg');
-            $imageSrc = file_exists($itemImagePath)
-                ? asset('images/items/' . $item->id . '.jpg')
-                : asset('images/placeholder.png');
-        @endphp
+   @foreach($items as $item)
+    <a href="{{ route('items.info', $item->id) }}">
+        <div class="card">
+    @php
+        $itemImagePath = storage_path('app/public/images/items/' . $item->id . '.jpg');
+        $imageSrc = file_exists($itemImagePath)
+            ? asset('storage/images/items/' . $item->id . '.jpg')
+            : asset('storage/images/placeholder.png');
+    @endphp
 
-        <img src="{{ $imageSrc }}" alt="{{ $item->name }}">
+    <img src="{{ $imageSrc }}" alt="{{ $item->name }}">
 
-                <div class="card-body">
-                    <h4 >{{ $item->name }}</h4>
-                    <p> {{ $item->price }}€ </p>
-                </div>
+            <div class="card-body">
+                <h4>{{ $item->name }}</h4>
+                <p>{{ $item->price }}€</p>
             </div>
-        </a>
-    @endforeach
+        </div>
+    </a>
+@endforeach
 
 </div>
 
