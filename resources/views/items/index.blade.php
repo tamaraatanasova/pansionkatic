@@ -52,7 +52,6 @@
     </ul>
 </nav>
 
-
         <!-- Main Card -->
 
             <!-- All Items Table -->
