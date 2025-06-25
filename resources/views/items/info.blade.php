@@ -30,10 +30,12 @@
 <div class="container" style="margin-top: 80px;">
     <div class="item-info">
         <div class="item-image">
-            @php
-                $itemImagePath = public_path('images/items/' . strtolower($item->name));
-                $imageSrc = file_exists($itemImagePath) ? asset('images/items/' . strtolower($item->name)) : asset('images/placeholder.png');
-            @endphp
+                 @php
+            $itemImagePath = public_path('images/items/' . $item->id . '.jpg');
+            $imageSrc = file_exists($itemImagePath)
+                ? asset('images/items/' . $item->id . '.jpg')
+                : asset('images/placeholder.png');
+        @endphp
             <img src="{{ $imageSrc }}" alt="{{ $item->name }}">
         </div>
         
