@@ -50,27 +50,43 @@
         </li>
     </ul>
 </nav>
+
     <!-- Main Card -->
     <div class="bg-white p-6 rounded shadow">
         <h3 class="text-lg font-semibold mb-2">Welcome, Admin!</h3>
-        <!-- All Items Table -->
+        <!-- Edit Item Form -->
 <div class="max-w-7xl mx-auto py-10">
     <div class="bg-white p-6 rounded shadow">
         <h3 class="text-lg font-semibold mb-4">Edit Item</h3>
 <form action="{{ route('items.update', $item->id) }}" method="POST">
     @csrf
     @method('PUT')
-    
+
+    <!-- Original Name Field -->
     <div class="mb-4">
         <label for="name" class="block">Name</label>
         <input type="text" name="name" id="name" value="{{ $item->name }}" class="w-full border-gray-300 p-2 rounded">
     </div>
-    
+
+    <!-- New Name (English) Field -->
+    <div class="mb-4">
+        <label for="name_en" class="block">Name (English)</label>
+        <input type="text" name="name_en" id="name_en" value="{{ $item->name_en }}" class="w-full border-gray-300 p-2 rounded">
+    </div>
+
+    <!-- New Name (Greek) Field -->
+    <div class="mb-4">
+        <label for="name_gr" class="block">Name (Greek)</label>
+        <input type="text" name="name_gr" id="name_gr" value="{{ $item->name_gr }}" class="w-full border-gray-300 p-2 rounded">
+    </div>
+
+    <!-- Price Field -->
     <div class="mb-4">
         <label for="price" class="block">Price</label>
         <input type="number" step="0.01" name="price" id="price" value="{{ $item->price }}" class="w-full border-gray-300 p-2 rounded">
     </div>
 
+    <!-- Category Selection -->
     <div class="mb-4">
         <label for="subtype_id" class="block">Category</label>
         <select name="subtype_id" id="subtype_id" class="w-full border-gray-300 p-2 rounded">
@@ -82,10 +98,22 @@
         </select>
     </div>
 
-    <!-- ✅ Description Field -->
+    <!-- Original Description Field -->
     <div class="mb-4">
         <label for="description" class="block">Description</label>
         <textarea name="description" id="description" rows="4" class="w-full border-gray-300 p-2 rounded">{{ $item->description }}</textarea>
+    </div>
+
+    <!-- New Description (English) Field -->
+    <div class="mb-4">
+        <label for="description_en" class="block">Description (English)</label>
+        <textarea name="description_en" id="description_en" rows="4" class="w-full border-gray-300 p-2 rounded">{{ $item->description_en }}</textarea>
+    </div>
+
+    <!-- New Description (German) Field -->
+    <div class="mb-4">
+        <label for="description_de" class="block">Description (German)</label>
+        <textarea name="description_de" id="description_de" rows="4" class="w-full border-gray-300 p-2 rounded">{{ $item->description_de }}</textarea>
     </div>
 
     <button type="submit" class="bg-blue-600 text-white p-2 rounded">Update Item</button>
@@ -94,11 +122,9 @@
     </div>
 </div>
 
-
     </div>
     
 </main>
 
 </body>
 </html>
-

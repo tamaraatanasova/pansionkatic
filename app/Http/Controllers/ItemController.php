@@ -49,12 +49,25 @@ public function update(Request $request, Item $item)
 {
     $request->validate([
         'name' => 'required|string|max:255',
-        'price' => 'required|numeric',
+        'name_en' => 'nullable|string|max:255',
+        'name_gr' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+        'description_en' => 'nullable|string',
+        'description_de' => 'nullable|string',
+        'price' => 'required|numeric|min:0',
         'subtype_id' => 'required|exists:subtypes,id',
-        'description' => 'nullable|string', // ✅ Add this line
     ]);
 
-    $item->update($request->only(['name', 'price', 'subtype_id', 'description'])); // ✅ Explicitly update only valid fields
+    $item->update($request->only([
+        'name',
+        'name_en',
+        'name_gr',
+        'description',
+        'description_en',
+        'description_de',
+        'price',
+        'subtype_id',
+    ]));
 
     return redirect()->route('dashboard')->with('success', 'Item updated successfully!');
 }
