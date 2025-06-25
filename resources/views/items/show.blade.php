@@ -33,7 +33,7 @@
 <div class="container">
 
 
-   @foreach($items as $item)
+@foreach($items as $item)
     <a href="{{ route('items.info', $item->id) }}">
         <div class="card">
     @php
