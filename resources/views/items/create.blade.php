@@ -57,34 +57,41 @@
     <div class="bg-white p-6 rounded shadow">
 
             <!-- Form for creating a new item -->
-            <form action="{{ route('items.store') }}" method="POST">
-                @csrf
-                <div class="space-y-4">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">Item Name</label>
-                        <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
-                    </div>
+         <form action="{{ route('items.store') }}" method="POST">
+    @csrf
+    <div class="space-y-4">
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-700">Item Name</label>
+            <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
+        </div>
 
-                    <div>
-                        <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-                        <input type="number" id="price" name="price" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
-                    </div>
+        <div>
+            <label for="price" class="block text-sm font-medium text-gray-700">Price (€)</label>
+            <input type="number" step="0.01" id="price" name="price" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
+        </div>
 
-                    <div>
-                        <label for="subtype_id" class="block text-sm font-medium text-gray-700">Category</label>
-                        <select id="subtype_id" name="subtype_id" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
-                            <option value="">Select a category</option>
-                            @foreach ($subtypes as $subtype)
-                                <option value="{{ $subtype->id }}">{{ $subtype->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+        <div>
+            <label for="subtype_id" class="block text-sm font-medium text-gray-700">Category</label>
+            <select id="subtype_id" name="subtype_id" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
+                <option value="">Select a category</option>
+                @foreach ($subtypes as $subtype)
+                    <option value="{{ $subtype->id }}">{{ $subtype->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-                    <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                        Dodaj
-                    </button>
-                </div>
-            </form>
+        <!-- Description Field -->
+        <div>
+            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea id="description" name="description" rows="4" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            Dodaj
+        </button>
+    </div>
+</form>
+
     </div>
 
 

@@ -57,32 +57,40 @@
 <div class="max-w-7xl mx-auto py-10">
     <div class="bg-white p-6 rounded shadow">
         <h3 class="text-lg font-semibold mb-4">Edit Item</h3>
+<form action="{{ route('items.update', $item->id) }}" method="POST">
+    @csrf
+    @method('PUT')
+    
+    <div class="mb-4">
+        <label for="name" class="block">Name</label>
+        <input type="text" name="name" id="name" value="{{ $item->name }}" class="w-full border-gray-300 p-2 rounded">
+    </div>
+    
+    <div class="mb-4">
+        <label for="price" class="block">Price</label>
+        <input type="number" step="0.01" name="price" id="price" value="{{ $item->price }}" class="w-full border-gray-300 p-2 rounded">
+    </div>
 
-        <form action="{{ route('items.update', $item->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            
-            <div class="mb-4">
-                <label for="name" class="block">Name</label>
-                <input type="text" name="name" id="name" value="{{ $item->name }}" class="w-full border-gray-300 p-2 rounded">
-            </div>
-            
-            <div class="mb-4">
-                <label for="price" class="block">Price</label>
-                <input type="number" name="price" id="price" value="{{ $item->price }}" class="w-full border-gray-300 p-2 rounded">
-            </div>
+    <div class="mb-4">
+        <label for="subtype_id" class="block">Category</label>
+        <select name="subtype_id" id="subtype_id" class="w-full border-gray-300 p-2 rounded">
+            @foreach ($subtypes as $subtype)
+                <option value="{{ $subtype->id }}" {{ $item->subtype_id == $subtype->id ? 'selected' : '' }}>
+                    {{ $subtype->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
 
-            <div class="mb-4">
-                <label for="subtype_id" class="block">Category</label>
-                <select name="subtype_id" id="subtype_id" class="w-full border-gray-300 p-2 rounded">
-                    @foreach ($subtypes as $subtype)
-                        <option value="{{ $subtype->id }}" {{ $item->subtype_id == $subtype->id ? 'selected' : '' }}>{{ $subtype->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+    <!-- ✅ Description Field -->
+    <div class="mb-4">
+        <label for="description" class="block">Description</label>
+        <textarea name="description" id="description" rows="4" class="w-full border-gray-300 p-2 rounded">{{ $item->description }}</textarea>
+    </div>
 
-            <button type="submit" class="bg-blue-600 text-white p-2 rounded">Update Item</button>
-        </form>
+    <button type="submit" class="bg-blue-600 text-white p-2 rounded">Update Item</button>
+</form>
+
     </div>
 </div>
 

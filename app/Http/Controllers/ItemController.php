@@ -45,18 +45,20 @@ public function showByCategory($id)
 }
 
 
-    public function update(Request $request, Item $item)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'subtype_id' => 'required|exists:subtypes,id',
-        ]);
+public function update(Request $request, Item $item)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'subtype_id' => 'required|exists:subtypes,id',
+        'description' => 'nullable|string', // ✅ Add this line
+    ]);
 
-        $item->update($request->all());
-        
-        return redirect()->route('dashboard')->with('success', 'Item updated successfully!');
-    }
+    $item->update($request->only(['name', 'price', 'subtype_id', 'description'])); // ✅ Explicitly update only valid fields
+
+    return redirect()->route('dashboard')->with('success', 'Item updated successfully!');
+}
+
 
     // Delete an item from the database
     public function destroy(Item $item)
@@ -72,19 +74,18 @@ public function showByCategory($id)
     }
 
     // Store the newly created item in the database
-    public function store(Request $request)
-    {
-        // Validation rules
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'subtype_id' => 'required|exists:subtypes,id',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'subtype_id' => 'required|exists:subtypes,id',
+        'description' => 'nullable|string', // ✅ Add this
+    ]);
 
-        // Create the new item
-        Item::create($request->all());
+    Item::create($request->only(['name', 'price', 'subtype_id', 'description'])); // ✅ Safer mass-assignment
 
-        // Redirect to the dashboard with success message
-        return redirect()->route('dashboard')->with('success', 'Item created successfully!');
-    }
+    return redirect()->route('dashboard')->with('success', 'Item created successfully!');
+}
+
 }
