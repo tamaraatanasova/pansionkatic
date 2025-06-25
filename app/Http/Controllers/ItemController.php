@@ -76,16 +76,21 @@ public function update(Request $request, Item $item)
     // Store the newly created item in the database
 public function store(Request $request)
 {
-    $request->validate([
+    $validated = $request->validate([
         'name' => 'required|string|max:255',
-        'price' => 'required|numeric',
+        'name_en' => 'nullable|string|max:255',
+        'name_de' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+        'description_en' => 'nullable|string',
+        'description_de' => 'nullable|string',
+        'price' => 'required|numeric|min:0',
         'subtype_id' => 'required|exists:subtypes,id',
-        'description' => 'nullable|string', // ✅ Add this
     ]);
 
-    Item::create($request->only(['name', 'price', 'subtype_id', 'description'])); // ✅ Safer mass-assignment
+    Item::create($validated);
 
     return redirect()->route('dashboard')->with('success', 'Item created successfully!');
 }
+
 
 }

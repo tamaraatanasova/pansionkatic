@@ -56,20 +56,34 @@
 <div class="max-w-7xl mx-auto py-10">
     <div class="bg-white p-6 rounded shadow">
 
-            <!-- Form for creating a new item -->
-         <form action="{{ route('items.store') }}" method="POST">
+<form action="{{ route('items.store') }}" method="POST">
     @csrf
     <div class="space-y-4">
+        <!-- Name HR -->
         <div>
-            <label for="name" class="block text-sm font-medium text-gray-700">Item Name</label>
+            <label for="name" class="block text-sm font-medium text-gray-700">Naziv (HR)</label>
             <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
         </div>
 
+        <!-- Name EN -->
+        <div>
+            <label for="name_en" class="block text-sm font-medium text-gray-700">Name (EN)</label>
+            <input type="text" id="name_en" name="name_en" class="mt-1 block w-full border border-gray-300 rounded-lg p-2">
+        </div>
+
+        <!-- Name DE -->
+        <div>
+            <label for="name_de" class="block text-sm font-medium text-gray-700">Name (DE)</label>
+            <input type="text" id="name_de" name="name_de" class="mt-1 block w-full border border-gray-300 rounded-lg p-2">
+        </div>
+
+        <!-- Price -->
         <div>
             <label for="price" class="block text-sm font-medium text-gray-700">Price (€)</label>
             <input type="number" step="0.01" id="price" name="price" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
         </div>
 
+        <!-- Category -->
         <div>
             <label for="subtype_id" class="block text-sm font-medium text-gray-700">Category</label>
             <select id="subtype_id" name="subtype_id" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required>
@@ -80,10 +94,22 @@
             </select>
         </div>
 
-        <!-- Description Field -->
+        <!-- Description HR -->
         <div>
-            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-            <textarea id="description" name="description" rows="4" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required></textarea>
+            <label for="description" class="block text-sm font-medium text-gray-700">Opis (HR)</label>
+            <textarea id="description" name="description" rows="3" class="mt-1 block w-full border border-gray-300 rounded-lg p-2" required></textarea>
+        </div>
+
+        <!-- Description EN -->
+        <div>
+            <label for="description_en" class="block text-sm font-medium text-gray-700">Description (EN)</label>
+            <textarea id="description_en" name="description_en" rows="3" class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
+        </div>
+
+        <!-- Description DE -->
+        <div>
+            <label for="description_de" class="block text-sm font-medium text-gray-700">Beschreibung (DE)</label>
+            <textarea id="description_de" name="description_de" rows="3" class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
         </div>
 
         <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
@@ -91,6 +117,7 @@
         </button>
     </div>
 </form>
+
 
     </div>
 

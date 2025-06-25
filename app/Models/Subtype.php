@@ -9,7 +9,7 @@ class Subtype extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type_id'];
+    protected $fillable = ['name', 'type_id','name_en', 'name_de'];
 
     // Define relationship with Type
     public function type()

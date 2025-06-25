@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,14 +17,17 @@
 
 <div class="nav-container">
     <div class="logo"><a href="/">Pansion Karić</a></div>
-    <!-- <div class="burger" onclick="toggleMenu()">
+    <div class="burger" onclick="toggleMenu()">
         <div></div>
         <div></div>
         <div></div>
     </div>
-    <div class="nav-links">
-        <a href="/login">Login</a>
-    </div> -->
+<div class="nav-links">
+    <a href="{{ route('lang.switch', 'en') }}">EN</a>
+    <a href="{{ route('lang.switch', 'de') }}">DE</a>
+    <a href="{{ route('lang.switch', 'hr') }}">HR</a>
+</div>
+
 </div>
 <header>
     <div class="hero">

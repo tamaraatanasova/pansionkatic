@@ -9,7 +9,7 @@ class Type extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image_url'];
+    protected $fillable = ['name', 'image_url', 'name_en', 'name_de'];
 
     public function subtypes()
     {
