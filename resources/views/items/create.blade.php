@@ -112,9 +112,13 @@
             <textarea id="description_de" name="description_de" rows="3" class="mt-1 block w-full border border-gray-300 rounded-lg p-2"></textarea>
         </div>
 
-        <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-            Dodaj
-        </button>
+<div>
+        <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+        <input type="file" id="image" name="image" class="mt-1 block w-full border border-gray-300 rounded-lg p-2">
+    </div>
+    <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        Dodaj
+    </button>
     </div>
 </form>
 

@@ -86,24 +86,36 @@ public function update(Request $request, Item $item)
         return view('items.create', compact('subtypes'));
     }
 
-    // Store the newly created item in the database
 public function store(Request $request)
 {
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'name_en' => 'nullable|string|max:255',
-        'name_de' => 'nullable|string|max:255',
-        'description' => 'nullable|string',
-        'description_en' => 'nullable|string',
-        'description_de' => 'nullable|string',
-        'price' => 'required|numeric|min:0',
-        'subtype_id' => 'required|exists:subtypes,id',
-    ]);
+    // Create a new item
+    $item = new Item();
+    $item->name = $request->name;
+    $item->name_en = $request->name_en;
+    $item->name_de = $request->name_de;
+    $item->price = $request->price;
+    $item->subtype_id = $request->subtype_id;
+    $item->description = $request->description;
+    $item->description_en = $request->description_en;
+    $item->description_de = $request->description_de;
 
-    Item::create($validated);
+    // Save the item first to generate an ID
+    $item->save();
 
-    return redirect()->route('dashboard')->with('success', 'Item created successfully!');
+    // Check if an image was uploaded
+    if ($request->hasFile('image')) {
+        // Generate a unique filename based on the item id
+        $imagePath = 'images/items/' . $item->id . '.jpg';
+
+        // Move the image to the public folder
+        $request->file('image')->move(public_path('images/items'), $item->id . '.jpg');
+    }
+
+    return redirect()->route('items.create');
 }
+
+
+
 
 
 }
