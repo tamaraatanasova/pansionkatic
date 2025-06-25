@@ -25,4 +25,66 @@ class ItemController extends Controller
 
         return view('items.info', compact('item'));
     }
+    public function edit(Item $item)
+{
+    // Fetch all subtypes to populate the category dropdown
+    $subtypes = Subtype::all();
+    
+    return view('items.edit', compact('item', 'subtypes')); // Pass subtypes along with the item
+}
+
+public function showByCategory($id)
+{
+    $subtype = Subtype::with('items')->findOrFail($id); 
+    $subtypes = Subtype::with('items')->get();
+    return view('items.index', [
+        'subtype' => $subtype, 
+        'subtypes' => $subtypes, 
+        'items' => $subtype->items, // Pass the items from the subtype
+    ]);
+}
+
+
+    public function update(Request $request, Item $item)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'subtype_id' => 'required|exists:subtypes,id',
+        ]);
+
+        $item->update($request->all());
+        
+        return redirect()->route('dashboard')->with('success', 'Item updated successfully!');
+    }
+
+    // Delete an item from the database
+    public function destroy(Item $item)
+    {
+        $item->delete();
+        return redirect()->route('dashboard')->with('success', 'Item deleted successfully!');
+    }
+
+        public function create()
+    {
+        $subtypes = Subtype::all(); // Fetch all subtypes for category selection
+        return view('items.create', compact('subtypes'));
+    }
+
+    // Store the newly created item in the database
+    public function store(Request $request)
+    {
+        // Validation rules
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'subtype_id' => 'required|exists:subtypes,id',
+        ]);
+
+        // Create the new item
+        Item::create($request->all());
+
+        // Redirect to the dashboard with success message
+        return redirect()->route('dashboard')->with('success', 'Item created successfully!');
+    }
 }

@@ -15,7 +15,15 @@
 <body>
 
 <div class="nav-container">
-    <div class="logo"><a href="/">Pansion Katić</a></div>
+    <div class="logo"><a href="/">Pansion Karić</a></div>
+    <!-- <div class="burger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="nav-links">
+        <a href="/login">Login</a>
+    </div> -->
 </div>
 <header>
     <div class="hero">

@@ -31,8 +31,8 @@
     <div class="item-info">
         <div class="item-image">
             @php
-                $itemImagePath = public_path('images/items/' . strtolower($item->name) . '.jpg');
-                $imageSrc = file_exists($itemImagePath) ? asset('images/items/' . strtolower($item->name) . '.jpg') : asset('images/placeholder.png');
+                $itemImagePath = public_path('images/items/' . strtolower($item->name));
+                $imageSrc = file_exists($itemImagePath) ? asset('images/items/' . strtolower($item->name)) : asset('images/placeholder.png');
             @endphp
             <img src="{{ $imageSrc }}" alt="{{ $item->name }}">
         </div>

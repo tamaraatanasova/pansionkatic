@@ -83,17 +83,22 @@ class ItemSeeder extends Seeder
             ['subtype_id'=>9,'name'=>'Bijela (jumbo)','description'=>'Vrhnje, 2 vrste sira, mozarela, gljive, origano','price'=>22.00],
             ['subtype_id'=>9,'name'=>'Šunka (medium)','description'=>'Pelata, sir, šunka, origano','price'=>10.00],
             ['subtype_id'=>9,'name'=>'Šunka (jumbo)','description'=>'Pelata, sir, šunka, origano','price'=>20.00],
+            
         ];
 
-        foreach ($items as $item) {
-            DB::table('items')->insert([
-                'subtype_id' => $item['subtype_id'],
-                'name' => $item['name'],
-                'description' => $item['description'],
-                'price' => $item['price'],
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
-        }
+      foreach ($items as $item) {
+    $imageFile = strtolower(str_replace([' ', '"', '(', ')'], '_', $item['name'])) . '.jpg';
+
+    DB::table('items')->insert([
+        'subtype_id' => $item['subtype_id'],
+        'name' => $item['name'],
+        'description' => $item['description'],
+        'price' => $item['price'],
+        'image_file' => $imageFile,
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now(),
+    ]);
+}
+
     }
 }
