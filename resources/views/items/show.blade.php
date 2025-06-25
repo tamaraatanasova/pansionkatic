@@ -43,10 +43,8 @@
         : asset('storage/images/items/placeholder.png');
 @endphp
 
-<img src="{{ $imageSrc }}" alt="{{ $item->name }}">
+<!-- <img src="{{ $imageSrc }}" alt="{{ $item->name }}"> -->
 
-
-    <img src="{{ $imageSrc }}" alt="{{ $item->name }}">
 
             <div class="card-body">
                 <h4>{{ $item->name }}</h4>
