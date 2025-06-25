@@ -50,7 +50,7 @@ public function update(Request $request, Item $item)
     $request->validate([
         'name' => 'required|string|max:255',
         'name_en' => 'nullable|string|max:255',
-        'name_gr' => 'nullable|string|max:255',
+        'name_de' => 'nullable|string|max:255',
         'description' => 'nullable|string',
         'description_en' => 'nullable|string',
         'description_de' => 'nullable|string',
@@ -61,7 +61,7 @@ public function update(Request $request, Item $item)
     $item->update($request->only([
         'name',
         'name_en',
-        'name_gr',
+        'name_de',
         'description',
         'description_en',
         'description_de',

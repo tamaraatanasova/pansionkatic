@@ -52,8 +52,7 @@
 </nav>
 
     <!-- Main Card -->
-    <div class="bg-white p-6 rounded shadow">
-        <h3 class="text-lg font-semibold mb-2">Welcome, Admin!</h3>
+
         <!-- Edit Item Form -->
 <div class="max-w-7xl mx-auto py-10">
     <div class="bg-white p-6 rounded shadow">
@@ -76,8 +75,8 @@
 
     <!-- New Name (Greek) Field -->
     <div class="mb-4">
-        <label for="name_gr" class="block">Name (Greek)</label>
-        <input type="text" name="name_gr" id="name_gr" value="{{ $item->name_gr }}" class="w-full border-gray-300 p-2 rounded">
+        <label for="name_gr" class="block">Name (German)</label>
+        <input type="text" name="name_de" id="name_de" value="{{ $item->name_de }}" class="w-full border-gray-300 p-2 rounded">
     </div>
 
     <!-- Price Field -->
@@ -122,7 +121,6 @@
     </div>
 </div>
 
-    </div>
     
 </main>
 
