@@ -41,7 +41,12 @@
             <div class="card">
                 <img src="{{ asset('images/' . strtolower($type->name) . '.jpg') }}" alt="{{ $type->name }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $type->name }}</h5>
+@php
+    $locale = app()->getLocale();
+    $name = $locale === 'hr' ? $type->name : ($type->{'name_' . $locale} ?? $type->name);
+@endphp
+
+<h5 class="card-title">{{ $name }}</h5>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </div>
