@@ -48,7 +48,7 @@
                 <div class="card-body">
                     <h4>{{ localized_field($item, 'name') }}</h4>
                     <p>{{ $item->price }}€</p>
-                    <i class="fa-solid fa-chevron-right"></i>
+                    <!-- <i class="fa-solid fa-chevron-right"></i> -->
                 </div>
             </div>
         </a>
