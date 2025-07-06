@@ -9,7 +9,7 @@ use App\Models\Type;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function edit()
     {
         $types = Type::all();
         $subtypes = Subtype::all();
