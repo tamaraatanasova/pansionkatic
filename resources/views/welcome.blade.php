@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pansion Karić</title>
+    <title>Pansion Katić</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="{{ asset('js/script.js') }}"></script>
 
@@ -16,7 +16,7 @@
 <body>
 
 <div class="nav-container">
-    <div class="logo"><a href="/">Pansion Karić</a></div>
+    <div class="logo"><a href="/">Pansion Katić</a></div>
     <div class="burger" onclick="toggleMenu()">
         <div></div>
         <div></div>

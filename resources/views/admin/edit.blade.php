@@ -25,10 +25,17 @@
             @foreach($types as $type)
                 <div class="type-form">
                     <h3>Edit Type: {{ $type->name }}</h3>
+
+                    <div>
+                        <label for="type_name_{{ $type->id }}">Name (Default)</label>
+                        <input type="text" name="type_name[{{ $type->id }}]" value="{{ old('type_name.' . $type->id, $type->name) }}">
+                    </div>
+
                     <div>
                         <label for="type_name_en_{{ $type->id }}">Name (EN)</label>
                         <input type="text" name="type_name_en[{{ $type->id }}]" value="{{ old('type_name_en.' . $type->id, $type->name_en) }}">
                     </div>
+
                     <div>
                         <label for="type_name_de_{{ $type->id }}">Name (DE)</label>
                         <input type="text" name="type_name_de[{{ $type->id }}]" value="{{ old('type_name_de.' . $type->id, $type->name_de) }}">
@@ -44,10 +51,17 @@
             @foreach($subtypes as $subtype)
                 <div class="subtype-form">
                     <h3>Edit Subtype: {{ $subtype->name }}</h3>
+
+                    <div>
+                        <label for="subtype_name_{{ $subtype->id }}">Name (Default)</label>
+                        <input type="text" name="subtype_name[{{ $subtype->id }}]" value="{{ old('subtype_name.' . $subtype->id, $subtype->name) }}">
+                    </div>
+
                     <div>
                         <label for="subtype_name_en_{{ $subtype->id }}">Name (EN)</label>
                         <input type="text" name="subtype_name_en[{{ $subtype->id }}]" value="{{ old('subtype_name_en.' . $subtype->id, $subtype->name_en) }}">
                     </div>
+
                     <div>
                         <label for="subtype_name_de_{{ $subtype->id }}">Name (DE)</label>
                         <input type="text" name="subtype_name_de[{{ $subtype->id }}]" value="{{ old('subtype_name_de.' . $subtype->id, $subtype->name_de) }}">
