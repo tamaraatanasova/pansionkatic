@@ -11,7 +11,7 @@
     <!-- Navbar -->
     <header class="bg-white shadow">
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Pansion Karić Admin Panel</h1>
+            <h1 class="text-2xl font-bold">Pansion Katić Admin Panel</h1>
             
             <nav class="space-x-4">
                 <form action="/logout" method="POST" class="inline">
