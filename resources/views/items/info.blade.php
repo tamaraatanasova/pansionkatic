@@ -48,8 +48,8 @@
 
             <div class="item-details">
                 <h2>{{ $item->name }}</h2>
-                <p><strong>Price:</strong> {{ $item->price }}€</p>
-                <p><strong></strong> {{ $item->description ?? ' ' }}</p>
+                <p>{{ $item->price }}€</p>
+                <p> {{ $item->description ?? ' ' }}</p>
                 <!-- Add more item details if needed -->
             </div>
         </div>
