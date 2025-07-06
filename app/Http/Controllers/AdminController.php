@@ -9,6 +9,12 @@ use App\Models\Type;
 
 class AdminController extends Controller
 {
+     public function dashboard()
+    {
+        $types = Type::all();
+        $subtypes = Subtype::all();
+        return view('dashboard', compact('types', 'subtypes'));
+    }
     public function edit()
     {
         $types = Type::all();
