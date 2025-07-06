@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,39 +14,43 @@
 </head>
 
 <body>
+    <div class="nav-container">
+        <div class="logo"><a href="/">Pansion Katić</a></div>
+        <div class="burger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url('/lang/hr') }}">HR</a>
+            <a href="{{ url('/lang/en') }}">EN</a>
+            <a href="{{ url('/lang/de') }}">DE</a>
 
-<div class="nav-container">
-    <div class="logo"><a href="/">Pansion Katić</a></div>
-    <!-- <div class="burger" onclick="toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
+        </div>
+
     </div>
-    <div class="nav-links">
-        <a href="/login">Login</a>
-    </div> -->
-</div>
-<header>
-    <div class="hero">
+    <header>
+        <div class="hero">
 
-    </div>
-</header>
-<div class="container">
+        </div>
+    </header>
+    <div class="container">
 
-    @foreach($subtype as $type)
+        @foreach($subtype as $type)
         <a href="{{ route('subtype.show', $type->id) }}">
             <div class="card">
                 <!-- <img src="{{ asset('images/' . strtolower($type->name) . '.jpg') }}" alt="{{ $type->name }}"> -->
                 <div class="card-body">
-                      {{ localized_field($type, 'name') }}
+                    {{ localized_field($type, 'name') }}
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </div>
         </a>
-    @endforeach
+        @endforeach
 
-</div>
+    </div>
 
-<script src="{{ asset('js/index.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
 </body>
+
 </html>
