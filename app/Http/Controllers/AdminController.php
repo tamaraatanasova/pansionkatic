@@ -13,7 +13,7 @@ class AdminController extends Controller
     {
         $types = Type::all();
         $subtypes = Subtype::all();
-        return view('dashboard', compact('types', 'subtypes'));
+        return view('admin.edit', compact('types', 'subtypes'));
     }
 
     public function update(Request $request)
