@@ -14,16 +14,19 @@
 
 <body>
 
+
 <div class="nav-container">
     <div class="logo"><a href="/">Pansion Katić</a></div>
-    <!-- <div class="burger" onclick="toggleMenu()">
+    <div class="burger" onclick="toggleMenu()">
         <div></div>
         <div></div>
         <div></div>
     </div>
     <div class="nav-links">
-        <a href="/login">Login</a>
-    </div> -->
+        <a href="{{ url('/lang/hr') }}">HR</a>
+        <a href="{{ url('/lang/en') }}">EN</a>
+        <a href="{{ url('/lang/de') }}">DE</a>
+    </div>
 </div>
 <header>
     <div class="hero">
