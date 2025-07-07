@@ -31,12 +31,11 @@
 <div class="container" style="margin-top: 80px;">
     <div class="item-info">
         <div class="item-image">
-            @php
-                $itemImagePath = storage_path('app/public/images/items/' . $item->id . '.jpg');
-                $imageSrc = file_exists($itemImagePath)
-                    ? asset('storage/images/items/' . $item->id . '.jpg')
-                    : asset('storage/images/items/placeholder.png');
-            @endphp
+    @php
+    $imageSrc = file_exists(public_path('images/items/' . $item->id . '.jpg'))
+        ? asset('images/items/' . $item->id . '.jpg')
+        : asset('images/items/placeholder.png');
+@endphp
 
             <img src="{{ $imageSrc }}" alt="{{ localized_field($item, 'name') }}">
         </div>

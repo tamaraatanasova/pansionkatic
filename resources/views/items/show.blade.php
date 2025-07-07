@@ -37,11 +37,11 @@
     <a href="{{ route('items.info', $item->id) }}">
         <div class="card">
 @php
-    $itemImagePath = storage_path('app/public/images/items/' . $item->id . '.jpg');
-    $imageSrc = file_exists($itemImagePath)
-        ? asset('storage/images/items/' . $item->id . '.jpg')
-        : asset('storage/images/items/placeholder.png');
+    $imageSrc = file_exists(public_path('images/items/' . $item->id . '.jpg'))
+        ? asset('images/items/' . $item->id . '.jpg')
+        : asset('images/items/placeholder.png');
 @endphp
+
 
 <img src="{{ $imageSrc }}" alt="{{ $item->name }}">
 
