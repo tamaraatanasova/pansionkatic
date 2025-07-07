@@ -6,50 +6,58 @@ use Illuminate\Http\Request;
 use App\Models\Subtype;
 use App\Models\Item;
 use App\Models\Type;
+
 class AdminController extends Controller
 {
-    public function dashboard()
+     public function dashboard()
     {
-        $subtypes = Subtype::with('items')->get(); // Fetch all subtypes with their related items
-        
-        return view('dashboard', compact('subtypes'));
+        $types = Type::all();
+        $subtypes = Subtype::all();
+        return view('dashboard', compact('types', 'subtypes'));
+    }
+    public function edit()
+    {
+        $types = Type::all();
+        $subtypes = Subtype::all();
+        return view('admin.edit', compact('types', 'subtypes'));
     }
 
-    
-//     public function edit()
-// {
-//     $types = Type::all();
-//     $subtypes = Subtype::all();
-//     return view('admin.edit', compact('types', 'subtypes'));
-// }
+    public function update(Request $request)
+    {
+        // Optional: Validate structure
+        $request->validate([
+            'type_name' => 'array',
+            'type_name.*' => 'nullable|string|max:255',
+            'type_name_en.*' => 'nullable|string|max:255',
+            'type_name_de.*' => 'nullable|string|max:255',
+            'subtype_name' => 'array',
+            'subtype_name.*' => 'nullable|string|max:255',
+            'subtype_name_en.*' => 'nullable|string|max:255',
+            'subtype_name_de.*' => 'nullable|string|max:255',
+        ]);
 
+        // Update types
+        foreach ($request->input('type_name', []) as $id => $name) {
+            $type = Type::find($id);
+            if ($type) {
+                $type->name = $name;
+                $type->name_en = $request->input("type_name_en.$id");
+                $type->name_de = $request->input("type_name_de.$id");
+                $type->save();
+            }
+        }
 
-//    public function update(Request $request)
-// {
-//     // Update types
-//     foreach ($request->type_name_en as $id => $name_en) {
-//         $type = Type::find($id);
-//         if ($type && is_null($type->name_en)) {
-//             $type->name_en = $name_en;
-//         }
-//         if ($type && is_null($type->name_de)) {
-//             $type->name_de = $request->type_name_de[$id];
-//         }
-//         $type->save();
-//     }
+        // Update subtypes
+        foreach ($request->input('subtype_name', []) as $id => $name) {
+            $subtype = Subtype::find($id);
+            if ($subtype) {
+                $subtype->name = $name;
+                $subtype->name_en = $request->input("subtype_name_en.$id");
+                $subtype->name_de = $request->input("subtype_name_de.$id");
+                $subtype->save();
+            }
+        }
 
-//     // Update subtypes
-//     foreach ($request->subtype_name_en as $id => $name_en) {
-//         $subtype = Subtype::find($id);
-//         if ($subtype && is_null($subtype->name_en)) {
-//             $subtype->name_en = $name_en;
-//         }
-//         if ($subtype && is_null($subtype->name_de)) {
-//             $subtype->name_de = $request->subtype_name_de[$id];
-//         }
-//         $subtype->save();
-//     }
-
-//     return redirect()->route('admin.edit')->with('success', 'Items updated successfully');
-// }
+        return redirect()->back()->with('success', 'Types and Subtypes updated successfully!');
+    }
 }
