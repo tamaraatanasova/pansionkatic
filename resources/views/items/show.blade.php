@@ -39,23 +39,20 @@
 @foreach($items as $item)
     <a href="{{ route('items.info', $item->id) }}">
         <div class="card">
-@php
-    $imageSrc = file_exists(public_path('images/items/' . $item->id . '.jpg'))
-        ? asset('images/items/' . $item->id . '.jpg')
-        : asset('images/items/placeholder.png');
-@endphp
-
-
-<img src="{{ $imageSrc }}" alt="{{ $item->name }}">
-
-
+            @php
+                $imageSrc = file_exists(public_path('images/items/' . $item->id . '.jpg'))
+                    ? asset('images/items/' . $item->id . '.jpg')
+                    : asset('images/items/placeholder.png');
+            @endphp
+            <img src="{{ $imageSrc }}" alt="{{ localized_field($item, 'name') }}">
             <div class="card-body">
-                <h4>{{ $item->name }}</h4>
+                <h4>{{ localized_field($item, 'name') }}</h4>
                 <p>{{ $item->price }}€</p>
             </div>
         </div>
     </a>
 @endforeach
+
 
 </div>
 
