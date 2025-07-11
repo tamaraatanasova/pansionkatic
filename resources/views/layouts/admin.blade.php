@@ -1,82 +1,48 @@
-@extends('layouts.admin')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ $title ?? 'Admin Panel' }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
 
-@section('content')
-    <h2 class="text-2xl font-semibold mb-6">Edit Item</h2>
-
-    <form method="POST" action="{{ route('items.update', $item->id) }}" enctype="multipart/form-data" class="bg-white p-6 rounded shadow max-w-xl">
-        @csrf
-        @method('PUT')
-
-        <!-- Name Fields -->
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Name</label>
-            <input type="text" name="name" class="w-full border rounded p-2" value="{{ old('name', $item->name) }}" required>
+    <!-- Navbar -->
+    <nav class="bg-white shadow fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">Pansion Katić Admin</h1>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="text-red-500 hover:underline">Logout</button>
+            </form>
         </div>
+    </nav>
 
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Name (English)</label>
-            <input type="text" name="name_en" class="w-full border rounded p-2" value="{{ old('name_en', $item->name_en) }}" required>
-        </div>
+    <!-- Sidebar + Main -->
+    <div class="flex pt-20">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r h-screen fixed top-16 left-0 p-4 space-y-2">
+            <a href="{{ route('items.create') }}" class="block px-4 py-2 rounded hover:bg-gray-200">Dodaj novi</a>
+            @foreach ($subtypes as $subtype)
+                    <a href="#subtype-{{ $subtype->id }}" 
+                       class="block px-4 py-2 rounded hover:bg-gray-200">
+                       {{ $subtype->name }}
+                    </a>
+            @endforeach
+        </aside>
 
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Name (German)</label>
-            <input type="text" name="name_de" class="w-full border rounded p-2" value="{{ old('name_de', $item->name_de) }}" required>
-        </div>
+        <!-- Main Content -->
+        <main class="ml-64 p-6 w-full">
+            @if(session('success'))
+                <div class="mb-4 p-4 bg-green-100 border border-green-300 rounded text-green-800">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-        <!-- Description Fields -->
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Description</label>
-            <textarea name="description" class="w-full border rounded p-2" rows="3">{{ old('description', $item->description) }}</textarea>
-        </div>
+            @yield('content')
+        </main>
+    </div>
 
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Description (English)</label>
-            <textarea name="description_en" class="w-full border rounded p-2" rows="3">{{ old('description_en', $item->description_en) }}</textarea>
-        </div>
-
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Description (German)</label>
-            <textarea name="description_de" class="w-full border rounded p-2" rows="3">{{ old('description_de', $item->description_de) }}</textarea>
-        </div>
-
-        <!-- Price Field -->
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Price</label>
-            <input type="text" name="price" class="w-full border rounded p-2" value="{{ old('price', $item->price) }}" required>
-        </div>
-
-        <!-- Subtype Selection -->
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Subtype</label>
-            <select name="subtype_id" class="w-full border rounded p-2" required>
-                <option value="">Select Subtype</option>
-                @foreach($subtypes as $subtype)
-                    <option value="{{ $subtype->id }}" {{ old('subtype_id', $item->subtype_id) == $subtype->id ? 'selected' : '' }}>
-                        {{ $subtype->name }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-
-        <!-- Current Image -->
-        @php
-            $imageSrc = file_exists(public_path('images/items/' . $item->id . '.jpg'))
-                ?? asset('images/items/' . $item->id . '.jpg')
-        @endphp
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Current Image</label>
-            <img src="{{ $imageSrc }}" alt="Item Image" class="h-40 object-cover rounded">
-        </div>
-
-        <!-- Image Upload (optional) -->
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Replace Image (optional)</label>
-            <input type="file" name="image" accept=".jpg" class="w-full border rounded p-2">
-        </div>
-
-        <!-- Submit Button -->
-        <div class="flex justify-end">
-            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Update</button>
-        </div>
-    </form>
-@endsection
+</body>
+</html>
