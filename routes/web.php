@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/items/category/{id}', [ItemController::class, 'showByCategory'])->name('items.category');
     Route::get('/items/{id}', [ItemController::class, 'show'])->name('items.show');
-    
+
 // Route::get('/admin/edit', [AdminController::class, 'edit'])->name('admin.edit');
 // Route::put('/admin/update', [AdminController::class, 'update'])->name('admin.update');
 
