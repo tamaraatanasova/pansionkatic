@@ -1,94 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pansion Katić Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 text-gray-800">
+@extends('layouts.admin')
 
-    <!-- Navbar -->
-    <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Pansion Katić Admin Panel</h1>
-            
-            <nav class="space-x-4">
-                <form action="/logout" method="POST" class="inline">
-                    <!-- Laravel requires CSRF token for logout -->
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="text-gray-700 hover:text-red-600">Logout</button>
-                </form>
-            </nav>
-        </div>
-    </header>
+@section('content')
+    <h2 class="text-2xl font-semibold mb-6">Items</h2>
 
-    <!-- Main Content -->
-    <main class="py-10 px-6 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        @foreach ($items as $item)
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <!-- Item Image -->
+                <img src="{{ asset('storage/images/' . $item->image) }}" alt="{{ $item->name }}" class="w-full h-48 object-cover">
 
-        <!-- Tabs Navbar -->
-        <nav class="mb-6 border-b border-gray-200">
-            <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500">
-                @foreach ($subtypes as $subtype)
-                    <li class="mr-2">
-                        <a href="{{ route('items.category', $subtype->id) }}" 
-                           class="inline-block p-4 rounded-t-lg hover:text-blue-600 hover:border-b-2 border-blue-600">
-                           {{ $subtype->name }}
-                        </a>
-                    </li>
-                @endforeach
-                
-                <!-- Vertical Line -->
-                <li class="border-l border-gray-200 mx-4"></li>
+                <div class="p-4">
+                    <!-- Item Name -->
+                    <h3 class="text-xl font-semibold text-gray-800 truncate">{{ $item->name }}</h3>
 
-                <!-- Add New Item Tab -->
-                <li class="mr-2">
-                    <a href="{{ route('items.create') }}" 
-                       class="inline-block p-4 rounded-t-lg hover:text-green-600 hover:border-b-2 border-green-600">
-                       Dodaj nov
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                    <!-- Item Description -->
+                    <p class="text-sm text-gray-600 mt-2">{{ Str::limit($item->description, 80) }}</p>
 
-        <!-- Items Display Section -->
-        <div class="mt-10 bg-white p-6 rounded shadow">
+                    <!-- Item Price -->
+                    <p class="text-lg font-semibold text-gray-800 mt-4">${{ $item->price }}</p>
 
-            @foreach ($subtypes as $subtype)
-                <div class="mt-6 bg-white p-6 rounded shadow">
-                    <h4 class="text-xl font-semibold mb-2">{{ $subtype->name }}</h4>
-                    
-                    <table class="min-w-full divide-y divide-gray-200 text-sm">
-                        <thead class="bg-gray-100 text-gray-600">
-                            <tr>
-                                <th class="px-4 py-2 text-left">ID</th>
-                                <th class="px-4 py-2 text-left">Name</th>
-                                <th class="px-4 py-2 text-left">Price</th>
-                                <th class="px-4 py-2 text-left">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            @foreach ($subtype->items as $item)
-                                <tr>
-                                    <td class="px-4 py-2">{{ $item->id }}</td>
-                                    <td class="px-4 py-2">{{ $item->name }}</td>
-                                    <td class="px-4 py-2">{{ $item->price }}</td>
-                                    <td class="px-4 py-2 space-x-2">
-                                        <a href="{{ route('items.edit', $item->id) }}" class="text-blue-600 hover:text-blue-800">Edit</a>
-                                        <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <!-- Action Buttons -->
+                    <div class="mt-4 flex space-x-2">
+                        <a href="{{ route('items.edit', $item->id) }}" class="text-blue-600 hover:text-blue-800">Edit</a>
+
+                        <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
+                        </form>
+                    </div>
                 </div>
-            @endforeach
-        </div>
-    </main>
-
-</body>
-</html>
+            </div>
+        @endforeach
+    </div>
+@endsection
