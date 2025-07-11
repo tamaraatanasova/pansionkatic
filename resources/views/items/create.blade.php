@@ -4,7 +4,7 @@
 @section('content')
     <h2 class="text-2xl font-semibold mb-6">Add New Item</h2>
 
-    <form method="POST" action="{{ route('admin.items.store') }}" enctype="multipart/form-data" class="bg-white p-6 rounded shadow max-w-xl">
+    <form method="POST" action="{{ route('items.store') }}" enctype="multipart/form-data" class="bg-white p-6 rounded shadow max-w-xl">
         @csrf
 
         <div class="mb-4">
