@@ -24,7 +24,14 @@
         <!-- Sidebar -->
         <aside class="w-64 bg-white border-r h-screen fixed top-16 left-0 p-4 space-y-2">
             <a href="{{ route('items.create') }}" class="block px-4 py-2 rounded hover:bg-gray-200">Add Item</a>
-            <!-- Add more sidebar links here as needed -->
+            @foreach ($subtypes as $subtype)
+                <li class="mr-2">
+                    <a href="#subtype-{{ $subtype->id }}" 
+                       class="inline-block p-4 rounded-t-lg hover:text-blue-600 hover:border-b-2 border-blue-600">
+                       {{ $subtype->name }}
+                    </a>
+                </li>
+            @endforeach
         </aside>
 
         <!-- Main Content -->
