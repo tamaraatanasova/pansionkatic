@@ -125,6 +125,11 @@ public function store(Request $request)
 
 
 
+public function index()
+{
+    $items = Item::all(); // Or paginate if needed: Item::paginate(10)
+    return view('admin.items.index', compact('items'));
+}
 
 
 }
