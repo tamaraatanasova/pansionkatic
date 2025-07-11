@@ -89,28 +89,39 @@ public function update(Request $request, Item $item)
 
 public function store(Request $request)
 {
-
     $request->validate([
         'name' => 'required|string|max:255',
+        'name_en' => 'nullable|string|max:255',
+        'name_de' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+        'description_en' => 'nullable|string',
+        'description_de' => 'nullable|string',
         'price' => 'required|numeric|min:0',
         'subtype_id' => 'required|exists:subtypes,id',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        'image' => 'nullable|image|mimes:jpg,jpeg|max:2048', // only jpg/jpeg allowed
     ]);
 
     $item = new Item();
     $item->name = $request->name;
+    $item->name_en = $request->name_en;
+    $item->name_de = $request->name_de;
+    $item->description = $request->description;
+    $item->description_en = $request->description_en;
+    $item->description_de = $request->description_de;
     $item->price = $request->price;
     $item->subtype_id = $request->subtype_id;
-    $item->save();
-
-    // dd('Saved'); // DEBUG
+    $item->save(); // Save first to get the ID
 
     if ($request->hasFile('image')) {
-        $request->file('image')->storeAs('public/images/items', $item->id . '.jpg');
+        $image = $request->file('image');
+
+        // Store in public/images/items/ as item_id.jpg
+        $image->move(public_path('images/items'), $item->id . '.jpg');
     }
 
     return redirect()->route('items.create')->with('success', 'Item created!');
 }
+
 
 
 

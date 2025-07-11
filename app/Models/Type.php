@@ -16,9 +16,6 @@ class Type extends Model
         return $this->hasMany(Subtype::class);
     }
 
-    public function items()
-{
-    return $this->hasMany(Item::class);
-}
+
 
 }
