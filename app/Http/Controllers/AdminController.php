@@ -9,12 +9,19 @@ use App\Models\Type;
 
 class AdminController extends Controller
 {
-     public function dashboard()
+    public function dashboard()
     {
+        // Get all types and subtypes
         $types = Type::all();
         $subtypes = Subtype::all();
-        return view('dashboard', compact('types', 'subtypes'));
+
+        // Fetch items with their associated subtypes (and images) for the dashboard
+        $items = Item::with('subtype')->get(); // Assuming `Item` model has a `subtype` relationship
+
+        // Return view with types, subtypes, and items
+        return view('dashboard', compact('types', 'subtypes', 'items'));
     }
+
     public function edit()
     {
         $types = Type::all();
