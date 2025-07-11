@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/items/{item}', [ItemController::class, 'update'])->name('items.update');
     Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
 
-    Route::get('/items/category/{id}', [ItemController::class, 'showByCategory'])->name('items.category');
+    Route::get('/items/category/{id}', [ItemController::class, 'showByCategory'])->name('items.index');
     Route::get('/items/{id}', [ItemController::class, 'show'])->name('items.show');
     
 // Route::get('/admin/edit', [AdminController::class, 'edit'])->name('admin.edit');
