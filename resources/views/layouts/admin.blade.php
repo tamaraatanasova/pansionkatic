@@ -30,11 +30,12 @@
         <aside class="w-64 bg-white border-r h-screen fixed top-16 left-0 p-4 space-y-2">
             <a href="{{ route('items.create') }}" class="block px-4 py-2 rounded hover:bg-gray-200">Dodaj novi</a>
             @foreach ($subtypes as $subtype)
-            <a href="/dashboard"
+            <a href="{{ Route::is('dashboard') ? '#' : '/dashboard' }}"
                 class="block px-4 py-2 rounded hover:bg-gray-200">
                 {{ $subtype->name }}
             </a>
             @endforeach
+
         </aside>
 
         <!-- Main Content -->
