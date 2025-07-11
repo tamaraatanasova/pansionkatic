@@ -58,11 +58,17 @@
             </select>
         </div>
 
-        <!-- Current Image -->
-        <div class="mb-4">
-            <label class="block font-medium mb-1">Current Image</label>
-            <img src="{{ asset('images/items/' . $item->image) }}" alt="Item Image" class="h-40 object-cover rounded">
-        </div>
+       <div class="mb-4">
+    <label class="block font-medium mb-1">Current Image</label>
+    @php
+        $imagePath = public_path('images/items/' . $item->image);
+        $imageSrc = file_exists($imagePath) && $item->image
+            ? asset('images/items/' . $item->image)
+            : asset('images/items/placeholder.png');
+    @endphp
+    <img src="{{ $imageSrc }}" alt="Item Image" class="h-40 object-cover rounded">
+</div>
+
 
         <!-- Image Upload (optional) -->
         <div class="mb-4">
