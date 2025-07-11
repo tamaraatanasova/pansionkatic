@@ -61,8 +61,7 @@
         <!-- Current Image -->
         @php
             $imageSrc = file_exists(public_path('images/items/' . $item->id . '.jpg'))
-                ? asset('images/items/' . $item->id . '.jpg')
-                : asset('images/items/placeholder.png');
+                ?? asset('images/items/' . $item->id . '.jpg')
         @endphp
         <div class="mb-4">
             <label class="block font-medium mb-1">Current Image</label>
