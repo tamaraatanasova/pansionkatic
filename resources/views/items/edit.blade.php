@@ -60,12 +60,11 @@
 
        <div class="mb-4">
     <label class="block font-medium mb-1">Current Image</label>
-    @php
-        $imagePath = public_path('images/items/' . $item->image);
-        $imageSrc = file_exists($imagePath) && $item->image
-            ? asset('images/items/' . $item->image)
-            : asset('images/items/placeholder.png');
-    @endphp
+     @php
+    $imageSrc = file_exists(public_path('images/items/' . $item->id . '.jpg'))
+        ? asset('images/items/' . $item->id . '.jpg')
+        : asset('images/items/placeholder.png');
+@endphp
     <img src="{{ $imageSrc }}" alt="Item Image" class="h-40 object-cover rounded">
 </div>
 
