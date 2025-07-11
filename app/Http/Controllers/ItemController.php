@@ -47,46 +47,47 @@ class ItemController extends Controller
 
 
     public function update(Request $request, Item $item)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'name_en' => 'nullable|string|max:255',
-            'name_de' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'description_en' => 'nullable|string',
-            'description_de' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'subtype_id' => 'required|exists:subtypes,id',
-            'image' => 'nullable|image|mimes:jpg,jpeg|max:2048',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'name_en' => 'nullable|string|max:255',
+        'name_de' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+        'description_en' => 'nullable|string',
+        'description_de' => 'nullable|string',
+        'price' => 'required|numeric|min:0',
+        'subtype_id' => 'required|exists:subtypes,id',
+        'image' => 'nullable|image|mimes:jpg,jpeg|max:2048',
+    ]);
 
-        // Update item fields
-        $item->update($request->only([
-            'name',
-            'name_en',
-            'name_de',
-            'description',
-            'description_en',
-            'description_de',
-            'price',
-            'subtype_id',
-        ]));
+    // Update item fields
+    $item->update($request->only([
+        'name',
+        'name_en',
+        'name_de',
+        'description',
+        'description_en',
+        'description_de',
+        'price',
+        'subtype_id',
+    ]));
 
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            $imagePath = public_path('images/items/' . $item->id . '.jpg');
+    // Handle image upload and replacement
+    if ($request->hasFile('image')) {
+        $imagePath = public_path('images/items/' . $item->id . '.jpg');
 
-            // Delete existing image if it exists
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
-            }
-
-            // Save the new image as item_id.jpg
-            $request->file('image')->move(public_path('images/items'), $item->id . '.jpg');
+        // Delete the old image if it exists
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
         }
 
-        return redirect()->route('dashboard')->with('success', 'Item updated successfully!');
+        // Save the new image as item_id.jpg
+        $request->file('image')->move(public_path('images/items'), $item->id . '.jpg');
     }
+
+    return redirect()->route('dashboard')->with('success', 'Item updated successfully!');
+}
+
 
 
     // Delete an item from the database
