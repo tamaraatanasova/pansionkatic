@@ -25,13 +25,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach ($subtype->items as $item)
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <!-- Conditional Item Image -->
-                    @php
-                        $imagePath = public_path('images/items/' . $item->image);
-                        $imageSrc = file_exists($imagePath) && $item->image
-                            ? asset('images/items/' . $item->image)
-                            : asset('images/items/placeholder.png');
-                    @endphp
+    @php
+    $imageSrc = file_exists(public_path('images/items/' . $item->id . '.jpg'))
+        ? asset('images/items/' . $item->id . '.jpg')
+        : asset('images/items/placeholder.png');
+@endphp
                     <img src="{{ $imageSrc }}" alt="{{ $item->name }}" class="w-full h-48 object-cover">
 
                     <div class="p-4">
