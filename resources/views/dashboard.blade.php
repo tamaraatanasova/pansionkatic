@@ -62,7 +62,7 @@
         @php
             $imageSrc = file_exists(public_path('images/items/' . $item->id . '.jpg'))
                 ? asset('images/items/' . $item->id . '.jpg')
-                : asset('images/items/placeholder.png');
+                : asset('images/items/placeholder.png');  // Fallback to placeholder
         @endphp
         <div class="mb-4">
             <label class="block font-medium mb-1">Current Image</label>
@@ -79,5 +79,5 @@
         <div class="flex justify-end">
             <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Update</button>
         </div>
-    </form>
+    </form> 
 @endsection
