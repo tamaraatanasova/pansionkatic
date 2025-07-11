@@ -31,7 +31,7 @@
             <a href="{{ route('items.create') }}" class="block px-4 py-2 rounded hover:bg-gray-200">Dodaj novi</a>
 
             @foreach ($subtypes as $subtype)
-            <a href="{{ Route::is('dashboard') ? '/#subtype-' . $subtype->id : '/dashboard' }}"
+            <a href="{{ Route::is('dashboard') ? '/dashboard/#subtype-' . $subtype->id : '/dashboard' }}"
                 class="block px-4 py-2 rounded hover:bg-gray-200">
                 {{ $subtype->name }}
             </a>
